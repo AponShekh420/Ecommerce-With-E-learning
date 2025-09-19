@@ -23,7 +23,7 @@ export default function Header() {
   }, []);
   return (
     <header
-      className={`bg-white py-2 sticky top-0 ${
+      className={`bg-white py-2 sticky top-0 z-99 ${
         scrolled ? "shadow-md shadow-black/10" : ""
       }`}
     >
