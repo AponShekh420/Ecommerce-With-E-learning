@@ -1,21 +1,27 @@
 "use client";
 import { sidebar_links } from "@/constants/sidebar_links";
-import { useUtility } from "@/context-provider/UtilityProvider";
+import { toggleSidebar } from "@/redux/features/sidebar/sidebarSlice";
+import { RootState } from "@/redux/store";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import LinkWrapper from "./LinkWrapper";
 
 export default function Sidebar() {
   const pathname = usePathname();
   const [sidebarLinks, setSidebarLinks] =
     useState<typeof sidebar_links>(sidebar_links);
-  const { isShowSidebar, toggleSidebar } = useUtility();
+
+  const dispatch = useDispatch();
+  const isShowSidebar = useSelector(
+    (state: RootState) => state.sidebar.isShowSidebar
+  );
 
   return (
     <div
-      className={`bg-white h-screen  px-4   fixed lg:sticky top-0  w-4/5 sm:w-3/5 lg:w-64 2xl:w-72 left-0 transition-transform duration-300 z-10 border-r-2 border-gray-200 ${
+      className={`bg-white h-screen  px-4 fixed lg:sticky top-20 lg:top-0  w-4/5 sm:w-3/5 lg:w-64 2xl:w-72 left-0 transition-transform duration-300 z-10 border-r-2 border-gray-200 ${
         isShowSidebar ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
       }`}
     >
@@ -48,7 +54,7 @@ export default function Sidebar() {
                   });
                   setSidebarLinks(filterSiderbar as typeof sidebar_links);
                 } else {
-                  toggleSidebar();
+                  dispatch(toggleSidebar());
                 }
               }}
             >
@@ -97,7 +103,7 @@ export default function Sidebar() {
 
         <button
           onClick={() => {
-            toggleSidebar();
+            dispatch(toggleSidebar());
           }}
           className="cursor-pointer absolute top-2 -right-2.5  p-3 rounded-r-full lg:hidden hover:text-red-500"
         >

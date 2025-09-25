@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Lexend_Deca } from "next/font/google";
-import "./globals.css";
 
+import ReduxStoreProvider from "@/context-provider/ReduxStoreProvider";
+import "./globals.css";
 export const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -31,7 +32,7 @@ export default function RootLayout({
         className={`${inter.className} antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <ReduxStoreProvider>{children}</ReduxStoreProvider>
       </body>
     </html>
   );
