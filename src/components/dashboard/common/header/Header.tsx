@@ -1,29 +1,29 @@
 "use client";
-
 import SearchPagePopup from "@/components/dashboard/common/header/SearchPagePopup";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-import { useUtility } from "@/context-provider/UtilityProvider";
+import { toggleSidebar } from "@/redux/features/sidebar/sidebarSlice";
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import MessageBox from "./MessageBox";
 import NotificationBox from "./NotificationBox";
 import ProfileBox from "./ProfileBox";
 import SettingsBox from "./SettingsBox";
 export default function Header() {
   const [scrolled, setScrolled] = useState<boolean>(false);
-  const { toggleSidebar } = useUtility();
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
     <header
-      className={`bg-white py-2 sticky top-0 ${
+      className={`bg-white py-2 sticky top-0 z-50 ${
         scrolled ? "shadow-md shadow-black/10" : ""
       }`}
     >
@@ -31,7 +31,7 @@ export default function Header() {
         <div className="flex items-center gap-8">
           <button
             className="cursor-pointer lg:hidden"
-            onClick={() => toggleSidebar()}
+            onClick={() => dispatch(toggleSidebar())}
           >
             <Icon icon="ri:menu-2-fill" width="25" height="25" />
           </button>
