@@ -24,6 +24,11 @@ export const sidebar_links = [
     icon: "fluent-mdl2:publish-course",
     isDropdown: true,
     isShowDropdown: false,
-    dropdownList: [{ id: 101, name: "Courses", url: "/dashboard/courses" }],
+    dropdownList: [
+      { id: 101, name: "Courses", url: "/dashboard/courses" },
+      { id: 101, name: "Classes", url: "/dashboard/classes" },
+      { id: 101, name: "Paid Records", url: "/dashboard/paid-records" },
+      { id: 101, name: "Free Records", url: "/dashboard/free-records" }
+    ],
   },
 ];
