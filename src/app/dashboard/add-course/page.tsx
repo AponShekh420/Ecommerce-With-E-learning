@@ -1,7 +1,9 @@
+import Editor from "@/components/dashboard/common/editor/Editor";
+
 const page = () => {
   return (
     <div>
-      Add Course
+      <Editor/>
     </div>
   );
 }
