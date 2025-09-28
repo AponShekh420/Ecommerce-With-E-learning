@@ -37,7 +37,7 @@ export default function MultiStepper({
                     "polygon(50% 0%, 100% 0, 100% 73%, 50% 100%, 1% 73%, 0 0)",
                 }}
                 className={`text-sm  px-2  pb-1.5 pt-0.5 rounded-t-md ${
-                  index < step + 1 ? "bg-blue-600 text-white" : "bg-gray-200"
+                  index < step ? "bg-blue-600 text-white" : "bg-gray-200"
                 }`}
               >
                 {index + 1}
