@@ -38,9 +38,9 @@ export const sidebar_links = [
     isShowDropdown: false,
     dropdownList: [
       { id: 101, name: "Courses", url: "/dashboard/courses" },
-      { id: 101, name: "Classes", url: "/dashboard/classes" },
-      { id: 101, name: "Paid Records", url: "/dashboard/paid-records" },
-      { id: 101, name: "Free Records", url: "/dashboard/free-records" }
+      { id: 102, name: "Classes", url: "/dashboard/classes" },
+      { id: 103, name: "Paid Records", url: "/dashboard/paid-records" },
+      { id: 104, name: "Free Records", url: "/dashboard/free-records" }
     ],
   },
 ];
