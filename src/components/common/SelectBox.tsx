@@ -28,7 +28,7 @@ export default function SelectBox({
 }: SelectBoxProps) {
   return (
     <div className={className}>
-      <Label htmlFor={name} className="capitalize mb-2 block">
+      <Label htmlFor={name} className="capitalize mb-4 block">
         {label}
       </Label>
       <Select onValueChange={onChange} defaultValue={value}>

@@ -15,6 +15,7 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Editor from "../../common/editor/Editor";
 export default function CreateProductForm() {
   const [thumbnail, setThumbnail] = useState<File[] | null>(null);
   const [galleryImage, setGalleryImage] = useState<File[] | null>(null);
@@ -39,34 +40,40 @@ export default function CreateProductForm() {
                 Add your product description and necessary information from here
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 gap-8">
-              <InputBox
-                name="title"
-                label="title"
-                placeholder="Product title"
-              />
-              <SelectBox
-                name="categories"
-                label="categories"
-                value=""
-                onChange={(val) => console.log("Selected:", val)}
-                options={[
-                  { label: "Fruits", value: "fruits" },
-                  { label: "Grocery", value: "grocery" },
-                  { label: "Meat", value: "meat" },
-                  { label: "Cat Food", value: "cat-food" },
-                ]}
-              />
-              <InputBox
-                name="product-tag"
-                label="Product tag"
-                placeholder="Tag"
-              />
-              <TextBox
-                name="short-description"
-                label="Short Description"
-                placeholder="Short description"
-              />
+            <div>
+              <div className="grid sm:grid-cols-2 gap-8">
+                <InputBox
+                  name="title"
+                  label="title"
+                  placeholder="Product title"
+                />
+                <SelectBox
+                  name="categories"
+                  label="categories"
+                  value=""
+                  onChange={(val) => console.log("Selected:", val)}
+                  options={[
+                    { label: "Fruits", value: "fruits" },
+                    { label: "Grocery", value: "grocery" },
+                    { label: "Meat", value: "meat" },
+                    { label: "Cat Food", value: "cat-food" },
+                  ]}
+                />
+                <InputBox
+                  name="product-tag"
+                  label="Product tag"
+                  placeholder="Tag"
+                />
+              </div>
+
+              <div>
+                <Label className="mb-4 mt-8">Short description</Label>
+                <Editor />
+              </div>
+              <div>
+                <Label className="mb-4 mt-8">Full description</Label>
+                <Editor />
+              </div>
             </div>
           </div>
         )}
@@ -163,7 +170,12 @@ export default function CreateProductForm() {
               </p>
             </div>
             <div className="grid sm:grid-cols-2 gap-8">
-              <InputBox name="sku" label="SKU" placeholder="SKU" />
+              <InputBox
+                name="sku"
+                label="SKU"
+                placeholder="SKU"
+                onChange={(e) => console.log(e)}
+              />
               <InputBox
                 name="isbn"
                 label="GTIN, UPC, EAN, OR ISBN"
@@ -201,7 +213,35 @@ export default function CreateProductForm() {
                 label="Initial number in stock"
                 placeholder="0"
               />
-              <div></div>
+              <div className="capitalize ">
+                <Label className="mb-4">Stock Status</Label>
+                <RadioGroup defaultValue="in-stock">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem
+                      value="in-stock"
+                      id="in-stock"
+                      className="size-5"
+                    />
+                    <Label htmlFor="option-one">in stock</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem
+                      value="out-of-stock"
+                      id="out-of-stock"
+                      className="size-5"
+                    />
+                    <Label htmlFor="out-of-stock">out of stock</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem
+                      value="on-backorder"
+                      id="on-backorder"
+                      className="size-5"
+                    />
+                    <Label htmlFor="on-backorder">On backorder</Label>
+                  </div>
+                </RadioGroup>
+              </div>
               <div className="space-y-10">
                 <div className="flex items-center gap-x-2">
                   <Checkbox className="size-5 checkbox-t" />
@@ -215,35 +255,6 @@ export default function CreateProductForm() {
                   <Checkbox className="size-5 checkbox-t" />
 
                   <Label>Limit purchases to 1 item per order?</Label>
-                </div>
-                <div className="capitalize ">
-                  <Label className="mb-4">Stock Status</Label>
-                  <RadioGroup defaultValue="in-stock">
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="in-stock"
-                        id="in-stock"
-                        className="size-5"
-                      />
-                      <Label htmlFor="option-one">in stock</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="out-of-stock"
-                        id="out-of-stock"
-                        className="size-5"
-                      />
-                      <Label htmlFor="out-of-stock">out of stock</Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem
-                        value="on-backorder"
-                        id="on-backorder"
-                        className="size-5"
-                      />
-                      <Label htmlFor="on-backorder">On backorder</Label>
-                    </div>
-                  </RadioGroup>
                 </div>
               </div>
             </div>
