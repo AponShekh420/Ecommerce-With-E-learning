@@ -21,7 +21,7 @@ export default function CreateProductForm() {
   const [galleryImage, setGalleryImage] = useState<File[] | null>(null);
   const dispatch = useDispatch();
   const { step } = useSelector((state: RootState) => state.stepper);
-  const totalStep = 5;
+  const totalStep = 6;
 
   const onHandleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -374,6 +374,29 @@ export default function CreateProductForm() {
                 label="Message on checkout page"
                 name="checkout-message"
                 placeholder="Write checkout page message"
+              />
+            </div>
+          </div>
+        )}
+        {step === 6 && (
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-4">
+            <div>
+              <h5 className="text-lg font-bold">SEO management</h5>
+              <p className=" text-gray-700 mt-2">
+                Add your product SEO meta data
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-1 gap-8">
+              <InputBox
+                name="meta-title"
+                label="Meta Title"
+                placeholder="Meta Title"
+              />
+              <TextBox
+                label="Meta Description"
+                name="Meta Description"
+                placeholder="Write meta description"
+                className="min-h-30"
               />
             </div>
           </div>
