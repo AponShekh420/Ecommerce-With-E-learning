@@ -19,8 +19,9 @@ export default function DragAndDropFiles({
 }: FileInputProps) {
   const dropRef = useRef<HTMLDivElement | null>(null);
   const [errors, setErrors] = useState<string[]>([]);
+  const inputFileRef = useRef<HTMLInputElement | null>(null);
   const acceptable = supportedFormat.join(",").replaceAll("image/", ".");
-  console.log(acceptable);
+
   const validateAndSetFiles = (selectedFiles: FileList | File[]) => {
     const allFiles = Array.from(selectedFiles);
     const validFiles: File[] = [];
@@ -42,7 +43,8 @@ export default function DragAndDropFiles({
       }
     });
     setErrors(errorList);
-    onFileChange(validFiles.length ? validFiles : null);
+    console.log(validFiles);
+    onFileChange(validFiles);
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -145,14 +147,17 @@ export default function DragAndDropFiles({
                 type="file"
                 onChange={handleFileSelect}
                 className="hidden"
-                id="fileInput"
+                ref={inputFileRef}
                 multiple
                 accept={acceptable}
                 {...rest}
               />
-              <label htmlFor="fileInput" className="cursor-pointer underline">
+              <span
+                onClick={() => inputFileRef.current?.click()}
+                className="cursor-pointer underline"
+              >
                 Upload
-              </label>
+              </span>
             </div>
 
             <p className="text-sm">Or drop files here</p>

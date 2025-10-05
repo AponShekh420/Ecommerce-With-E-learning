@@ -5,29 +5,42 @@ Quill.register("modules/imageResize", ImageResize);
 
 export const modules = {
   toolbar: [
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    [{ 'font': [] }], // Use the registered fonts
-    [{ 'size': ['small', false, 'large', 'huge'] }], // Custom sizes
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-    [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-    [{ 'script': 'sub' }, { 'script': 'super' }],
-    [{ 'indent': '-1' }, { 'indent': '+1' }],
-    [{ 'color': [] }, { 'background': [] }],
-    [{ 'align': [] }],
-    ['link', 'image', 'video'],
-    ['clean']
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+    [{ font: [] }], // Use the registered fonts
+    [{ size: ["small", false, "large", "huge"] }], // Custom sizes
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    [{ script: "sub" }, { script: "super" }],
+    [{ indent: "-1" }, { indent: "+1" }],
+    [{ color: [] }, { background: [] }],
+    [{ align: [] }],
+    ["link", "image", "video"],
+    ["clean"],
   ],
   imageResize: {
-  // options
-  parchment: Quill.import("parchment"),
-  modules: ["Resize", "DisplaySize", "Toolbar"],
+    // options
+    parchment: Quill.import("parchment"),
+    modules: ["Resize", "DisplaySize", "Toolbar"],
   },
 };
 
 export const formats = [
-  'header', 'font', 'size',
-  'bold', 'italic', 'underline', 'strike', 'blockquote',
-  'list', 'bullet', 'indent', 'script', 'align',
-  'color', 'background',
-  'link', 'image', 'video'
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "indent",
+  "script",
+  "align",
+  "color",
+  "background",
+  "link",
+  "image",
+  "video",
 ];
