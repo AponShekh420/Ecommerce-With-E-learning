@@ -1,8 +1,16 @@
+"use client";
 import ImageResize from "quill-image-resize-module-react";
 import { Quill } from "react-quill-new";
 // Register module
 Quill.register("modules/imageResize", ImageResize);
-
+// Register the module
+if (
+  typeof window !== "undefined" &&
+  Quill &&
+  !Quill.imports["modules/imageResize"]
+) {
+  Quill.register("modules/imageResize", ImageResize);
+}
 export const modules = {
   toolbar: [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -17,6 +25,7 @@ export const modules = {
     ["link", "image", "video"],
     ["clean"],
   ],
+
   imageResize: {
     // options
     parchment: Quill.import("parchment"),

@@ -1,12 +1,13 @@
-"use client";
-
-import { truncateHTML } from "@/components/common/TruncateHTML";
 import { useState } from "react";
+import { truncateHTML } from "./TruncateHTML";
 const initialWord = 150;
 
-function StringToDomComponent({ htmlString }) {
+function StringToDomComponent({ htmlString }: { htmlString: string }) {
   const [word, setWord] = useState(initialWord);
-  const { htmlText, wordCount } = truncateHTML(htmlString, word);
+  const { htmlText, wordCount } = truncateHTML(htmlString, word) ?? {
+    htmlText: "",
+    wordCount: 0,
+  };
   return (
     <div>
       <div dangerouslySetInnerHTML={{ __html: htmlText }} />
