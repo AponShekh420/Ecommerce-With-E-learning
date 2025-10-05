@@ -2,12 +2,19 @@
 import DragAndDropFiles from "@/components/common/DragAndDropFiles";
 import InputBox from "@/components/common/InputBox";
 import SelectBox from "@/components/common/SelectBox";
-import Editor from "@/components/dashboard/common/editor/Editor";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Icon } from "@iconify/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useState } from "react";
+
+const Editor = dynamic(
+  () => import("@/components/dashboard/common/editor/Editor"),
+  {
+    ssr: false,
+  }
+);
 export default function CategoryForm() {
   const [thumbnail, setThumbnail] = useState<File[] | null>(null);
   return (
@@ -64,7 +71,7 @@ export default function CategoryForm() {
           </div>
           <div>
             <Label className="mb-4 mt-8">Description</Label>
-            <Editor />
+            <Editor value="" onChange={(val) => console.log(val)} />
           </div>
           <Button className="ml-auto w-fit block my-8" variant="blue">
             Submit
