@@ -49,4 +49,16 @@ export const sidebar_links = [
       { id: 104, name: "Free Records", url: "/dashboard/free-records" },
     ],
   },
+  {
+    id: 4,
+    url: "",
+    name: "Users",
+    icon: "flowbite:users-outline",
+    isDropdown: true,
+    isShowDropdown: false,
+    dropdownList: [
+      { id: 101, name: "User list", url: "/dashboard/users" },
+      { id: 102, name: "Create User", url: "/dashboard/users/create" },
+    ],
+  },
 ];
