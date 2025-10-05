@@ -43,7 +43,6 @@ export const formats = [
   "strike",
   "blockquote",
   "list",
-  "bullet",
   "indent",
   "script",
   "align",

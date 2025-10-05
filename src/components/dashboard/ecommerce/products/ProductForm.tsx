@@ -12,9 +12,17 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { addProductField } from "@/redux/features/product/productFormSlice";
 import { RootState } from "@/redux/store";
 import { Icon } from "@iconify/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
-import Editor from "../../common/editor/Editor";
+
+const Editor = dynamic(
+  () => import("@/components/dashboard/common/editor/Editor"),
+  {
+    ssr: false,
+  }
+);
+
 export default function CreateProductForm() {
   const dispatch = useDispatch();
   const { step } = useSelector((state: RootState) => state.stepper);
@@ -76,11 +84,21 @@ export default function CreateProductForm() {
 
               <div>
                 <Label className="mb-4 mt-8">Short description</Label>
-                <Editor />
+                <Editor
+                  value={productForm.shortDescription}
+                  onChange={(val) =>
+                    dispatch(addProductField({ shortDescription: val }))
+                  }
+                />
               </div>
               <div>
                 <Label className="mb-4 mt-8">Full description</Label>
-                <Editor />
+                <Editor
+                  value={productForm.description}
+                  onChange={(val) =>
+                    dispatch(addProductField({ description: val }))
+                  }
+                />
               </div>
             </div>
           </div>
