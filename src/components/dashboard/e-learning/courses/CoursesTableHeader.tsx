@@ -18,21 +18,21 @@ import {
 } from "@/components/ui/sheet";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-export default function OrdersTableHeader() {
+export default function CoursesTableHeader() {
   return (
     <div className="my-4">
       <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4">
         <div>
-          <h1 className="font-bold text-xl mb-3">Orders</h1>
+          <h1 className="font-bold text-xl mb-3">Courses</h1>
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink href="/dashboard">E-Commerce</BreadcrumbLink>
+                <BreadcrumbLink href="/dashboard">E-Learning</BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink href="/dashboard/ecommerce/orders">
-                  Order List
+                <BreadcrumbLink href="/dashboard/ecommerce/products">
+                  Course List
                 </BreadcrumbLink>
               </BreadcrumbItem>
             </BreadcrumbList>
@@ -43,10 +43,10 @@ export default function OrdersTableHeader() {
             <Icon icon="charm:upload" width="32" height="32" />
             <span>Export</span>
           </Button>
-          <Link href="/dashboard/ecommerce/create-product">
+          <Link href="/dashboard/ecommerce/add-product">
             <Button variant="blue">
               <Icon icon="ic:baseline-plus" width="32" height="32" />
-              <span>Add Order</span>
+              <span>Add Course</span>
             </Button>
           </Link>
         </div>
@@ -61,7 +61,7 @@ export default function OrdersTableHeader() {
           />
 
           <Input
-            placeholder="Search by customer name..."
+            placeholder="Search by course title..."
             className="!py-2.5 h-full w-full block border-none focus-visible:ring-0 text-sm placeholder:font-medium placeholder:text-gray-400 "
           />
         </div>
@@ -77,7 +77,7 @@ export default function OrdersTableHeader() {
 
             <SheetContent>
               <SheetHeader>
-                <SheetTitle>Product Filters</SheetTitle>
+                <SheetTitle>Course Filters</SheetTitle>
                 <hr className="mt-2" />
                 <SheetDescription>
                   <span className="mt-4 inline-block">
@@ -90,13 +90,6 @@ export default function OrdersTableHeader() {
                   </span>
                   <span className="mt-4 block">
                     <label>Created Date</label>
-                    <input
-                      type="date"
-                      className="border py-2 w-full px-4 rounded-md mt-2 "
-                    />
-                  </span>
-                  <span className="mt-4 block">
-                    <label>Modified Date</label>
                     <input
                       type="date"
                       className="border py-2 w-full px-4 rounded-md mt-2 "

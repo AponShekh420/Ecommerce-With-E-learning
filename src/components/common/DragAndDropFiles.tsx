@@ -1,49 +1,50 @@
 "use client";
 
 import { useRef, useState } from "react";
-
-const SUPPORTED_FORMATS = ["image/png", "image/jpeg"];
-const MAX_FILES = 5;
-
 interface FileInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   onFileChange: (files: File[] | null) => void;
   acceptableFile?: string;
   className?: string;
+  isFileList?: boolean;
+  supportedFormat?: string[];
+  MAX_FILES?: number;
 }
 
 export default function DragAndDropFiles({
   onFileChange,
-  acceptableFile = "PNG,JPG,JPEG (max 5 files)",
   className = "",
+  supportedFormat = ["image/png", "image/jpeg", "image/jpg"],
+  MAX_FILES = 1,
   ...rest
 }: FileInputProps) {
   const dropRef = useRef<HTMLDivElement | null>(null);
-  const [files, setFiles] = useState<File[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
+  const inputFileRef = useRef<HTMLInputElement | null>(null);
+  const acceptable = supportedFormat.join(",").replaceAll("image/", ".");
 
   const validateAndSetFiles = (selectedFiles: FileList | File[]) => {
     const allFiles = Array.from(selectedFiles);
     const validFiles: File[] = [];
     const errorList: string[] = [];
 
-    if (allFiles.length + files.length > MAX_FILES) {
+    if (allFiles.length > MAX_FILES) {
       errorList.push(`❌ You can upload maximum ${MAX_FILES} files at a time`);
       setErrors(errorList);
+      onFileChange(null);
       return;
     }
 
     allFiles.forEach((file) => {
-      if (!SUPPORTED_FORMATS.includes(file.type)) {
-        errorList.push(`${file.name}: ❌ Only PNG,JPG,JPEG files are allowed`);
+      if (!supportedFormat.includes(file.type)) {
+        errorList.push(`${file.name}: ❌ Only ${acceptable} files are allowed`);
+        onFileChange(null);
       } else {
         validFiles.push(file);
       }
     });
-
-    const newFiles = [...files, ...validFiles];
-    setFiles(newFiles);
     setErrors(errorList);
-    onFileChange(newFiles.length ? newFiles : null);
+    console.log(validFiles);
+    onFileChange(validFiles);
   };
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
@@ -144,33 +145,28 @@ export default function DragAndDropFiles({
             <div>
               <input
                 type="file"
-                multiple
                 onChange={handleFileSelect}
                 className="hidden"
-                id="fileInput"
-                accept=".pdf,.jpg,.jpeg,.png"
+                ref={inputFileRef}
+                multiple
+                accept={acceptable}
                 {...rest}
               />
-              <label htmlFor="fileInput" className="cursor-pointer underline">
+              <span
+                onClick={() => inputFileRef.current?.click()}
+                className="cursor-pointer underline"
+              >
                 Upload
-              </label>
+              </span>
             </div>
 
             <p className="text-sm">Or drop files here</p>
             <p className="text-xs text-gray-400 hidden sm:block">
-              {acceptableFile}
+              {acceptable} (max {MAX_FILES} files)
             </p>
           </div>
         </div>
       </div>
-
-      {files.length > 0 && (
-        <div className="text-green-600 text-sm space-y-1">
-          {files.map((f, idx) => (
-            <p key={idx}>✅ {f.name}</p>
-          ))}
-        </div>
-      )}
 
       {errors.length > 0 && (
         <div className="text-red-500 text-sm space-y-1">
