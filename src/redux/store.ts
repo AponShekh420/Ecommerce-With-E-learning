@@ -1,4 +1,5 @@
 import productFormReducer from "@/redux/features/product/productFormSlice";
+import courseFormReducer from "@/redux/features/course/courseFormSlice";
 import sidebarReducer from "@/redux/features/sidebar/sidebarSlice";
 import stepperReducer from "@/redux/features/stepper/stepperSlice";
 import { configureStore } from "@reduxjs/toolkit";
@@ -7,6 +8,7 @@ export const store = configureStore({
     sidebar: sidebarReducer,
     stepper: stepperReducer,
     productForm: productFormReducer,
+    courseForm: courseFormReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
