@@ -8,9 +8,11 @@ interface InputBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: string;
   icon?: ReactNode;
   className?: string;
+  parentClassName?: string;
 }
 
 export default function InputBox({
+  parentClassName,
   className,
   name,
   label,
@@ -20,7 +22,7 @@ export default function InputBox({
 }: InputBoxProps) {
   if (type == "number") {
     return (
-      <div>
+      <div className={parentClassName}>
         <Label htmlFor={name} className="capitalize mb-4">
           {label}
         </Label>
@@ -44,7 +46,7 @@ export default function InputBox({
     );
   }
   return (
-    <div>
+    <div className={parentClassName}>
       <Label htmlFor={name} className="capitalize mb-4">
         {label}
       </Label>

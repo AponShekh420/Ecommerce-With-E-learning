@@ -63,7 +63,7 @@ export default function MultiStepper({
         </div>
       </div>
       {children}
-      <div className="flex justify-end gap-4 mt-10 mb-20 capitalize">
+      <div className="flex justify-end gap-4 mt-2 mb-20 capitalize">
         {step > 1 && (
           <Button onClick={() => dispatch(prevStep())} variant="outline">
             Prev

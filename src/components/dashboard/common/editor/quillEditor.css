@@ -1,5 +1,5 @@
 .ql-container.ql-snow {
-  height: 400px;
+  min-height: 400px;
 }
 
 .ql-toolbar {
