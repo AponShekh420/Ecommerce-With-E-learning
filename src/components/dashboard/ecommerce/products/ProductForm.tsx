@@ -487,7 +487,7 @@ export default function CreateProductForm() {
                 }
               />
               <div>
-                <Label className="mb-4">Upload your file</Label>{" "}
+                <Label className="mb-4">Upload Attachment</Label>{" "}
                 <Input
                   name="attachment"
                   type="file"
