@@ -27,3 +27,14 @@ export const getProductStatusColor = (status: string) => {
     return "";
   }
 };
+export const getUserRoleColor = (status: string) => {
+  if (status.toLowerCase() === "admin") {
+    return "text-green-500";
+  } else if (status.toLowerCase() === "customer") {
+    return "text-blue-500";
+  } else if (status.toLowerCase() === "speaker") {
+    return "text-yellow-500";
+  } else {
+    return "text-red-500";
+  }
+};
